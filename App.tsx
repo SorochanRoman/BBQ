@@ -18,6 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import {
   Colors,
@@ -26,71 +27,57 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import LoginScreen from './src/Screens/Login/Login.Component';
+import RecipesScreen from './src/Screens/Recipes/Recipes.Component';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Section: React.FC<{
-  title: string;
-}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    borderColor: !isDarkMode ? Colors.darker : Colors.lighter,
+    borderWidth: 2
   };
 
+  function onReady(){
+    console.log('onready')
+  }
+
+  // return (
+  //   <SafeAreaView style={backgroundStyle}>
+  //     <NavigationContainer onReady={onReady}>
+  //         <Tab.Navigator 
+  //           initialRouteName="Home"
+  //           screenOptions={{
+  //             tabBarActiveTintColor: '#e91e63',
+  //           }}
+  //           >
+  //           <Tab.Screen name="Home" component={LoginScreen} />
+  //           <Tab.Screen name="Settings" component={RecipesScreen} />
+  //         </Tab.Navigator>
+  //     </NavigationContainer>
+  //   </SafeAreaView>
+  // );
+
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+    <SafeAreaView style={styles.container}>
+      <NavigationContainer onReady={onReady}>
+        <Tab.Navigator 
+          initialRouteName="Recipes"
+          screenOptions={{
+            tabBarActiveTintColor: '#e91e63',
+          }}
+          >
+          <Tab.Screen name="Login" component={LoginScreen} />
+          <Tab.Screen name="Recipes" component={RecipesScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>);
 };
 
 const styles = StyleSheet.create({
@@ -109,6 +96,32 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+    padding: 20,
+    margin: 10,
+  },
+  top: {
+    flex: 0.3,
+    backgroundColor: "grey",
+    borderWidth: 5,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  middle: {
+    flex: 0.3,
+    backgroundColor: "beige",
+    borderWidth: 5,
+  },
+  bottom: {
+    flex: 0.3,
+    backgroundColor: "pink",
+    borderWidth: 5,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
 });
 
