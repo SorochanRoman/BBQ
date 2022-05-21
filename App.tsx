@@ -9,6 +9,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import LoginScreen from './src/Screens/Login/Login.Component';
 import RecipesScreen from './src/Screens/Recipes/Recipes.Component';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { ApplicationProvider } from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,26 +23,28 @@ const App = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <NavigationContainer onReady={onReady}>
-        <Tab.Navigator 
-          initialRouteName="Recipes"
-          screenOptions={{
-            tabBarActiveTintColor: '#e91e63',
-          }}
-          >
-          <Tab.Screen name="Login" component={LoginScreen} />
-          <Tab.Screen name="Recipes" component={RecipesScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </SafeAreaView>);
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer onReady={onReady}>
+          <Tab.Navigator 
+            initialRouteName="Recipes"
+            screenOptions={{
+              tabBarActiveTintColor: '#e91e63',
+            }}
+            >
+            <Tab.Screen name="Login" component={LoginScreen} />
+            <Tab.Screen name="Recipes" component={RecipesScreen} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
+    </ApplicationProvider>);
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
-    backgroundColor: "#fff",
+    backgroundColor: Colors.lighter,
     padding: 20,
     margin: 10,
   }
