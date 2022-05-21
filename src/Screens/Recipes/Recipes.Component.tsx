@@ -1,9 +1,11 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 
 const RecipesScreen = () => {
   return (
-    <Text>RecipesScreen</Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderColor: '#000', borderWidth: 2 }}>
+      <Text style={{color: '#000'}}>Recieps!</Text>
+    </View>
   )
 }
 
