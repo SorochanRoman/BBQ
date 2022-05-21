@@ -1,3 +1,4 @@
+import { Button } from '@ui-kitten/components';
 import React, { useState } from 'react'
 import { Text, View } from 'react-native'
 import RecipeCard from './Components/RecipeCard';
@@ -5,7 +6,7 @@ import { Recipe } from './Recipes.Interfaces';
 
 
 
-const RecipesScreen = () => {
+const RecipesScreen = ({navigation}: {navigation: any}) => {
   const [recipes, setRecipes] = useState<Recipe[]>([
     {
       id: '0',
@@ -24,8 +25,14 @@ Tempor enim quis sint laboris qui tempor nostrud ipsum aliquip fugiat consequat 
       category: 'desert',
     },
   ]);
+
+  function goToAddRecipe(){
+    console.log('navigation', navigation);
+  }
+
   return (
     <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+      <Button onPress={goToAddRecipe}>Add Recipe</Button>
       <Text style={{color: '#000'}}>Recieps!</Text>
       {
         recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe}/>)
