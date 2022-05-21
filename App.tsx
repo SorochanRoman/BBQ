@@ -32,37 +32,14 @@ import RecipesScreen from './src/Screens/Recipes/Recipes.Component';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    borderColor: !isDarkMode ? Colors.darker : Colors.lighter,
-    borderWidth: 2
-  };
-
   function onReady(){
     console.log('onready')
   }
-
-  // return (
-  //   <SafeAreaView style={backgroundStyle}>
-  //     <NavigationContainer onReady={onReady}>
-  //         <Tab.Navigator 
-  //           initialRouteName="Home"
-  //           screenOptions={{
-  //             tabBarActiveTintColor: '#e91e63',
-  //           }}
-  //           >
-  //           <Tab.Screen name="Home" component={LoginScreen} />
-  //           <Tab.Screen name="Settings" component={RecipesScreen} />
-  //         </Tab.Navigator>
-  //     </NavigationContainer>
-  //   </SafeAreaView>
-  // );
 
   return (
     <SafeAreaView style={styles.container}>
