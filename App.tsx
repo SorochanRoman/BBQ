@@ -14,6 +14,8 @@ import { ApplicationProvider, BottomNavigation, BottomNavigationTab } from '@ui-
 import * as eva from '@eva-design/eva';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RecipeEditor from './src/Screens/Recipes/Components/RecipeEditor';
+import { Provider } from 'react-redux';
+import { store } from './src/store';
 // import { createStackNavigator } from '@react-navigation/native-stack';
 
 const Tab = createBottomTabNavigator();
@@ -34,23 +36,25 @@ const App = () => {
   }
 
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <SafeAreaView style={styles.container}>
-        <NavigationContainer onReady={onReady}>
-          <Tab.Navigator 
-            initialRouteName="Recipes"
-            screenOptions={{
-              tabBarActiveTintColor: '#e91e63',
-            }}
-            >
-              
-            <Tab.Screen name="Login" component={LoginScreen} />
-            <Tab.Screen name="Recipes" component={RecipesScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
-        
-      </SafeAreaView>
-    </ApplicationProvider>);
+    <Provider store={store}>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <SafeAreaView style={styles.container}>
+          <NavigationContainer onReady={onReady}>
+            <Tab.Navigator 
+              initialRouteName="Recipes"
+              screenOptions={{
+                tabBarActiveTintColor: '#e91e63',
+              }}
+              >
+                
+              <Tab.Screen name="Login" component={LoginScreen} />
+              <Tab.Screen name="Recipes" component={RecipesScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+          
+        </SafeAreaView>
+      </ApplicationProvider>
+    </Provider>);
 };
 
 const styles = StyleSheet.create({
