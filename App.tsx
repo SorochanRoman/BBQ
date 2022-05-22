@@ -25,11 +25,6 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-
-  useEffect(() => {
-    console.log('selectedIndex', selectedIndex);
-  }, [selectedIndex]);
 
   function onReady(){
     console.log('onready')
