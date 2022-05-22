@@ -47,16 +47,6 @@ const App = () => {
             <Tab.Screen name="Login" component={LoginScreen} />
             <Tab.Screen name="Recipes" component={RecipesScreen} />
           </Tab.Navigator>
-          {/* <Stack.Navigator initialRouteName='Recipes'>
-            <Stack.Screen name="Recipes" component={RecipesScreen} />
-            <Stack.Screen name="Editor" component={RecipeEditor} />
-          </Stack.Navigator>
-          <BottomNavigation
-              selectedIndex={selectedIndex}
-              onSelect={index => setSelectedIndex(index)}>
-              <BottomNavigationTab title='Login'/>
-              <BottomNavigationTab title='Recipes'/>
-          </BottomNavigation> */}
         </NavigationContainer>
         
       </SafeAreaView>
