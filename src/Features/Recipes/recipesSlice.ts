@@ -20,10 +20,13 @@ export const counterSlice = createSlice({
     loaddedRecipesList: (state, action: PayloadAction<Recipe[]>) => {
       state.recipes = action.payload;
     },
+    addRecipe: (state, action: PayloadAction<Recipe>) => {
+        state.recipes = [...state.recipes, action.payload];
+    }
   },
 })
 
-export const { loaddedRecipesList } = counterSlice.actions
+export const { loaddedRecipesList, addRecipe } = counterSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectRecipes = (state: RootState) => state.counter.recipes
